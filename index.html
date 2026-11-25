@@ -5,221 +5,388 @@
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>Kazem Bigdeli · Cloud & AI Infrastructure Engineer</title>
 <meta name="description" content="Kazem Bigdeli, Cloud and AI Infrastructure Engineer in Turin, Italy. Kubernetes, multi-cluster scheduling, GPU infrastructure, NVIDIA-Certified.">
+<meta property="og:title" content="Kazem Bigdeli · Cloud & AI Infrastructure Engineer">
+<meta property="og:description" content="Kubernetes, multi-cluster scheduling and GPU infrastructure. Turin, Italy.">
+<meta property="og:image" content="https://github.com/thisiskazem.png?size=400">
+<link rel="icon" href="https://github.com/thisiskazem.png?size=64">
 <link rel="preconnect" href="https://fonts.googleapis.com">
-<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
 <style>
   :root {
-    --bg: #ffffff;
-    --surface: #f6f8fa;
-    --text: #1f2328;
-    --muted: #59636e;
-    --accent: #1a5fb4;
-    --rule: #d8dee4;
-  }
-  @media (prefers-color-scheme: dark) {
-    :root {
-      --bg: #0d1117;
-      --surface: #161b22;
-      --text: #e6edf3;
-      --muted: #9198a1;
-      --accent: #6cb6ff;
-      --rule: #30363d;
-    }
+    --bg: #0a0e13;
+    --bg-2: #0f141b;
+    --surface: #121922;
+    --surface-2: #16202b;
+    --text: #e6edf3;
+    --muted: #8b97a6;
+    --accent: #76d672;
+    --accent-dim: rgba(118, 214, 114, 0.14);
+    --rule: #223040;
+    --mono: "JetBrains Mono", ui-monospace, SFMono-Regular, Menlo, monospace;
   }
   * { box-sizing: border-box; }
+  html { scroll-behavior: smooth; }
   body {
     margin: 0;
     background: var(--bg);
     color: var(--text);
     font-family: "Inter", system-ui, -apple-system, "Segoe UI", sans-serif;
     font-size: 16px;
-    line-height: 1.6;
+    line-height: 1.65;
+    -webkit-font-smoothing: antialiased;
   }
-  main { max-width: 760px; margin: 0 auto; padding: 56px 20px 72px; }
+  /* faint data-center grid */
+  body::before {
+    content: "";
+    position: fixed;
+    inset: 0;
+    background-image:
+      linear-gradient(rgba(118, 214, 114, 0.045) 1px, transparent 1px),
+      linear-gradient(90deg, rgba(118, 214, 114, 0.045) 1px, transparent 1px);
+    background-size: 44px 44px;
+    mask-image: radial-gradient(ellipse at 50% 0%, #000 30%, transparent 80%);
+    -webkit-mask-image: radial-gradient(ellipse at 50% 0%, #000 30%, transparent 80%);
+    pointer-events: none;
+    z-index: 0;
+  }
+  main { position: relative; z-index: 1; max-width: 880px; margin: 0 auto; padding: 64px 20px 80px; }
   a { color: var(--accent); text-decoration: none; }
   a:hover { text-decoration: underline; }
 
-  header h1 { font-size: 2.4rem; letter-spacing: -0.03em; margin: 0; }
-  .role { font-size: 1.1rem; font-weight: 600; color: var(--accent); margin: 4px 0 2px; }
-  .meta { color: var(--muted); margin: 0 0 16px; }
-  .links { display: flex; flex-wrap: wrap; gap: 10px; margin: 0 0 8px; }
-  .links a {
+  /* ---------- Hero ---------- */
+  .hero { display: grid; grid-template-columns: auto 1fr; gap: 32px; align-items: center; }
+  .avatar {
+    width: 148px; height: 148px; border-radius: 50%;
+    object-fit: cover;
+    border: 2px solid var(--accent);
+    box-shadow: 0 0 0 6px var(--accent-dim), 0 0 40px rgba(118, 214, 114, 0.18);
+  }
+  .hero h1 { font-size: 2.6rem; line-height: 1.1; letter-spacing: -0.03em; margin: 0; }
+  .role { font-family: var(--mono); color: var(--accent); font-size: 1rem; margin: 8px 0 4px; }
+  .meta { color: var(--muted); margin: 0 0 18px; }
+  .links { display: flex; flex-wrap: wrap; gap: 10px; }
+  .btn {
     border: 1px solid var(--rule);
-    border-radius: 999px;
-    padding: 6px 14px;
+    background: var(--surface);
+    border-radius: 8px;
+    padding: 7px 14px;
     font-size: 0.9rem;
     font-weight: 500;
     color: var(--text);
+    transition: border-color .2s, color .2s, background .2s;
   }
-  .links a:hover { border-color: var(--accent); color: var(--accent); text-decoration: none; }
+  .btn:hover { border-color: var(--accent); color: var(--accent); text-decoration: none; }
+  .btn.primary { background: var(--accent); color: #0a0e13; border-color: var(--accent); font-weight: 600; }
+  .btn.primary:hover { background: #8fe58b; color: #0a0e13; }
 
-  section { margin-top: 44px; }
+  /* ---------- Terminal ---------- */
+  .terminal {
+    margin-top: 40px;
+    background: var(--bg-2);
+    border: 1px solid var(--rule);
+    border-radius: 10px;
+    overflow: hidden;
+    font-family: var(--mono);
+    font-size: 0.86rem;
+  }
+  .term-bar { display: flex; gap: 7px; padding: 10px 14px; background: var(--surface); border-bottom: 1px solid var(--rule); }
+  .term-bar span { width: 11px; height: 11px; border-radius: 50%; background: #2d3a48; }
+  .term-body { padding: 14px 18px 16px; min-height: 152px; white-space: pre; overflow-x: auto; color: var(--muted); }
+  .term-body .prompt { color: var(--accent); }
+  .term-body .cmd { color: var(--text); }
+  .term-body .ok { color: var(--accent); }
+  .cursor { display: inline-block; width: 8px; height: 1.05em; background: var(--accent); vertical-align: text-bottom; animation: blink 1s steps(1) infinite; }
+  @keyframes blink { 50% { opacity: 0; } }
+
+  /* ---------- Sections ---------- */
+  section { margin-top: 64px; }
   h2 {
-    font-size: 0.8rem;
-    text-transform: uppercase;
-    letter-spacing: 0.12em;
-    color: var(--muted);
-    border-bottom: 1px solid var(--rule);
-    padding-bottom: 6px;
-    margin: 0 0 18px;
+    font-family: var(--mono);
+    font-size: 0.95rem;
+    font-weight: 500;
+    color: var(--accent);
+    margin: 0 0 22px;
+    display: flex; align-items: center; gap: 12px;
   }
-  .intro { font-size: 1.05rem; }
+  h2::after { content: ""; flex: 1; height: 1px; background: var(--rule); }
+  .intro { font-size: 1.08rem; color: var(--text); margin: 0; }
 
-  .item { margin-bottom: 22px; }
-  .item-head { display: flex; justify-content: space-between; gap: 12px; flex-wrap: wrap; }
-  .item-title { font-weight: 600; }
-  .item-date { color: var(--muted); font-size: 0.9rem; white-space: nowrap; }
-  .item-sub { color: var(--muted); font-size: 0.95rem; }
-  ul { margin: 6px 0 0; padding-left: 20px; }
-  li { margin-bottom: 4px; }
+  /* Now */
+  .now {
+    background: linear-gradient(135deg, var(--surface) 0%, var(--surface-2) 100%);
+    border: 1px solid var(--rule);
+    border-left: 3px solid var(--accent);
+    border-radius: 10px;
+    padding: 18px 20px;
+  }
+  .now-row { display: flex; gap: 12px; align-items: baseline; margin: 4px 0; }
+  .dot { width: 9px; height: 9px; border-radius: 50%; background: var(--accent); flex: none; box-shadow: 0 0 10px var(--accent); animation: pulse 2s ease-in-out infinite; }
+  @keyframes pulse { 50% { opacity: .45; } }
+  .now-label { font-family: var(--mono); color: var(--muted); font-size: 0.82rem; min-width: 92px; }
 
-  .cards { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 14px; }
+  /* Timeline */
+  .timeline { position: relative; padding-left: 26px; }
+  .timeline::before { content: ""; position: absolute; left: 5px; top: 6px; bottom: 6px; width: 1px; background: var(--rule); }
+  .tl-item { position: relative; margin-bottom: 28px; }
+  .tl-item::before {
+    content: ""; position: absolute; left: -26px; top: 7px;
+    width: 11px; height: 11px; border-radius: 50%;
+    background: var(--bg); border: 2px solid var(--accent);
+  }
+  .tl-head { display: flex; justify-content: space-between; gap: 12px; flex-wrap: wrap; }
+  .tl-title { font-weight: 600; }
+  .tl-org { color: var(--muted); }
+  .date { font-family: var(--mono); color: var(--muted); font-size: 0.82rem; white-space: nowrap; }
+  ul { margin: 8px 0 0; padding-left: 18px; }
+  li { margin-bottom: 5px; }
+  li::marker { color: var(--accent); }
+
+  /* Cards */
+  .cards { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 16px; }
   .card {
     background: var(--surface);
     border: 1px solid var(--rule);
-    border-radius: 10px;
-    padding: 16px;
+    border-radius: 12px;
+    padding: 18px;
+    transition: border-color .25s, transform .25s, box-shadow .25s;
   }
-  .card a.card-title { font-weight: 600; display: block; margin-bottom: 4px; }
-  .card p { margin: 0; font-size: 0.92rem; color: var(--muted); }
+  .card:hover { border-color: var(--accent); transform: translateY(-3px); box-shadow: 0 10px 30px rgba(0,0,0,.35), 0 0 0 1px var(--accent-dim); }
+  .card-title { font-weight: 600; font-size: 1.02rem; color: var(--text); }
+  .card:hover .card-title { color: var(--accent); }
+  .card p { margin: 6px 0 12px; font-size: 0.93rem; color: var(--muted); }
+  a.card { display: block; color: inherit; }
+  a.card:hover { text-decoration: none; }
 
-  .tags { display: flex; flex-wrap: wrap; gap: 6px; margin: 4px 0 12px; }
+  .tags { display: flex; flex-wrap: wrap; gap: 6px; }
   .tag {
-    background: var(--surface);
+    font-family: var(--mono);
+    background: var(--bg-2);
     border: 1px solid var(--rule);
     border-radius: 6px;
-    padding: 2px 9px;
-    font-size: 0.85rem;
+    padding: 2px 8px;
+    font-size: 0.76rem;
+    color: var(--muted);
   }
-  .skill-label { font-weight: 600; font-size: 0.9rem; }
 
-  .cert { display: flex; justify-content: space-between; gap: 12px; flex-wrap: wrap; margin-bottom: 8px; }
-  .badge-next { color: var(--muted); font-size: 0.92rem; }
+  /* Certs */
+  .cert-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(260px, 1fr)); gap: 16px; }
+  .cert { background: var(--surface); border: 1px solid var(--rule); border-radius: 12px; padding: 18px; }
+  .cert .issuer { font-family: var(--mono); font-size: 0.78rem; color: var(--accent); text-transform: uppercase; letter-spacing: .08em; }
+  .cert .name { font-weight: 600; margin: 4px 0 6px; }
+  .cert .small { font-size: 0.85rem; color: var(--muted); }
+  .cert.next { border-style: dashed; }
 
-  footer { margin-top: 56px; color: var(--muted); font-size: 0.85rem; text-align: center; }
+  /* Skills */
+  .skills { display: grid; grid-template-columns: 170px 1fr; gap: 14px 20px; align-items: start; }
+  .skill-label { font-family: var(--mono); font-size: 0.85rem; color: var(--muted); padding-top: 2px; }
+
+  /* Education */
+  .edu { display: flex; justify-content: space-between; gap: 12px; flex-wrap: wrap; margin-bottom: 14px; }
+
+  footer { margin-top: 72px; padding-top: 22px; border-top: 1px solid var(--rule); color: var(--muted); font-size: 0.85rem; display: flex; justify-content: space-between; flex-wrap: wrap; gap: 10px; font-family: var(--mono); }
+
+  @media (max-width: 640px) {
+    main { padding-top: 40px; }
+    .hero { grid-template-columns: 1fr; text-align: left; gap: 20px; }
+    .avatar { width: 112px; height: 112px; }
+    .hero h1 { font-size: 2.1rem; }
+    .skills { grid-template-columns: 1fr; gap: 6px; }
+    .skill-label { margin-top: 8px; }
+  }
+  @media (prefers-reduced-motion: reduce) {
+    * { animation: none !important; transition: none !important; }
+  }
 </style>
 </head>
 <body>
 <main>
 
-  <header>
-    <h1>Kazem Bigdeli</h1>
-    <p class="role">Cloud &amp; AI Infrastructure Engineer</p>
-    <p class="meta">Turin, Italy · Research Fellow at Politecnico di Torino</p>
-    <nav class="links">
-      <a href="https://www.linkedin.com/in/kazembigdeli/">LinkedIn</a>
-      <a href="https://github.com/thisiskazem">GitHub</a>
-      <a href="mailto:kazem26@gmail.com">Email</a>
-    </nav>
+  <header class="hero">
+    <img class="avatar" src="photo.jpg" onerror="this.onerror=null;this.src='https://github.com/thisiskazem.png?size=320'" alt="Kazem Bigdeli">
+    <div>
+      <h1>Kazem Bigdeli</h1>
+      <p class="role">Cloud &amp; AI Infrastructure Engineer</p>
+      <p class="meta">Turin, Italy · Research Fellow at Politecnico di Torino</p>
+      <nav class="links">
+        <a class="btn primary" href="Kazem_Bigdeli_CV.pdf" download>Download CV</a>
+        <a class="btn" href="https://www.linkedin.com/in/kazembigdeli/">LinkedIn</a>
+        <a class="btn" href="https://github.com/thisiskazem">GitHub</a>
+        <a class="btn" href="mailto:kazem26@gmail.com">Email</a>
+      </nav>
+    </div>
   </header>
 
+  <div class="terminal" aria-hidden="true">
+    <div class="term-bar"><span></span><span></span><span></span></div>
+    <div class="term-body" id="term"></div>
+  </div>
+
   <section>
-    <h2>About</h2>
+    <h2>~/about</h2>
     <p class="intro">I build Kubernetes platforms at the multi-cluster, scheduling and networking layer, write controllers in Go, and automate infrastructure end to end. I'm now focused on the infrastructure that runs AI: GPU compute, high-performance networking, and the orchestration that ties them together.</p>
   </section>
 
   <section>
-    <h2>Experience</h2>
-
-    <div class="item">
-      <div class="item-head">
-        <span class="item-title">Research Fellow · Politecnico di Torino</span>
-        <span class="item-date">2024 – Present</span>
-      </div>
-      <ul>
-        <li>AI workload optimization for telco edge data centers; infrastructure architecture for the FiberCop telco edge network.</li>
-        <li>Building <a href="https://github.com/netgroup-polito/federation-autoscaler">federation-autoscaler</a>, a Cluster Autoscaler extension that borrows compute across federated clusters via Liqo.</li>
-        <li>Contributor to <a href="https://github.com/liqotech/liqo">Liqo</a> (CNCF ecosystem); energy monitoring with Prometheus, Grafana and Kepler.</li>
-      </ul>
-    </div>
-
-    <div class="item">
-      <div class="item-head">
-        <span class="item-title">Cloud-Native Engineer Intern · Engineering Group</span>
-        <span class="item-date">2025 – 2026</span>
-      </div>
-      <ul>
-        <li>Sole author of <a href="https://github.com/thisiskazem/liqo-upgrade-operator">liqo-upgrade-operator</a>: staged upgrades with health gates and automatic rollback; peering downtime cut to about 30 seconds.</li>
-      </ul>
-    </div>
-
-    <div class="item">
-      <div class="item-head">
-        <span class="item-title">System Administrator · MPP Holding</span>
-        <span class="item-date">2021 – 2023</span>
-      </div>
-      <ul>
-        <li>Ran servers, virtual machines and network infrastructure for an organisation of about 100 users.</li>
-      </ul>
+    <h2>~/now</h2>
+    <div class="now">
+      <div class="now-row"><span class="dot"></span><span class="now-label">building</span><span>federation-autoscaler: borrowing compute across federated Kubernetes clusters</span></div>
+      <div class="now-row"><span class="dot"></span><span class="now-label">researching</span><span>AI workload optimization for telco edge data centers</span></div>
+      <div class="now-row"><span class="dot"></span><span class="now-label">studying</span><span>NVIDIA AI Operations (NCP-AIO) · exam in January 2027</span></div>
     </div>
   </section>
 
   <section>
-    <h2>Projects</h2>
+    <h2>~/experience</h2>
+    <div class="timeline">
+      <div class="tl-item">
+        <div class="tl-head">
+          <span><span class="tl-title">Research Fellow</span> <span class="tl-org">· Politecnico di Torino</span></span>
+          <span class="date">2024 – present</span>
+        </div>
+        <ul>
+          <li>AI workload optimization for telco edge data centers; infrastructure architecture for the FiberCop telco edge network.</li>
+          <li>Building <a href="https://github.com/netgroup-polito/federation-autoscaler">federation-autoscaler</a>, a Cluster Autoscaler extension that borrows compute across federated clusters via Liqo.</li>
+          <li>Contributor to <a href="https://github.com/liqotech/liqo">Liqo</a> (CNCF ecosystem); energy monitoring with Prometheus, Grafana and Kepler.</li>
+        </ul>
+      </div>
+      <div class="tl-item">
+        <div class="tl-head">
+          <span><span class="tl-title">Cloud-Native Engineer Intern</span> <span class="tl-org">· Engineering Group</span></span>
+          <span class="date">2025 – 2026</span>
+        </div>
+        <ul>
+          <li>Sole author of <a href="https://github.com/thisiskazem/liqo-upgrade-operator">liqo-upgrade-operator</a>: staged upgrades with health gates and automatic rollback; peering downtime cut to about 30 seconds.</li>
+        </ul>
+      </div>
+      <div class="tl-item">
+        <div class="tl-head">
+          <span><span class="tl-title">System Administrator</span> <span class="tl-org">· MPP Holding</span></span>
+          <span class="date">2021 – 2023</span>
+        </div>
+        <ul>
+          <li>Ran servers, virtual machines and network infrastructure for an organisation of about 100 users.</li>
+        </ul>
+      </div>
+    </div>
+  </section>
+
+  <section>
+    <h2>~/projects</h2>
     <div class="cards">
-      <div class="card">
-        <a class="card-title" href="https://github.com/netgroup-polito/federation-autoscaler">federation-autoscaler</a>
-        <p>Multi-cluster autoscaling with virtual nodes. Go · kubebuilder · gRPC · Liqo</p>
+      <a class="card" href="https://github.com/netgroup-polito/federation-autoscaler">
+        <div class="card-title">federation-autoscaler</div>
+        <p>Cluster Autoscaler extension that exposes compute from federated clusters as virtual nodes.</p>
+        <div class="tags"><span class="tag">Go</span><span class="tag">kubebuilder</span><span class="tag">gRPC</span><span class="tag">Liqo</span></div>
+      </a>
+      <a class="card" href="https://github.com/thisiskazem/liqo-upgrade-operator">
+        <div class="card-title">liqo-upgrade-operator</div>
+        <p>Minimal-downtime Liqo upgrades with health gates and automatic rollback.</p>
+        <div class="tags"><span class="tag">Go</span><span class="tag">Operator</span><span class="tag">Helm</span></div>
+      </a>
+      <a class="card" href="https://github.com/thisiskazem/gitops-k8s-platform">
+        <div class="card-title">gitops-k8s-platform</div>
+        <p>A commit becomes a running, monitored deployment with multi-window SLO alerts.</p>
+        <div class="tags"><span class="tag">Argo CD</span><span class="tag">Helm</span><span class="tag">Prometheus</span></div>
+      </a>
+      <a class="card" href="https://github.com/thisiskazem/aws-landing-zone">
+        <div class="card-title">aws-landing-zone</div>
+        <p>Terraform landing zone with EKS, IRSA and a credential-less OIDC pipeline.</p>
+        <div class="tags"><span class="tag">Terraform</span><span class="tag">AWS</span><span class="tag">EKS</span></div>
+      </a>
+    </div>
+  </section>
+
+  <section>
+    <h2>~/certifications</h2>
+    <div class="cert-grid">
+      <div class="cert">
+        <div class="issuer">NVIDIA</div>
+        <div class="name">Certified Associate: AI Infrastructure and Operations</div>
+        <div class="small">2026 · <a href="http://credential.nvidia.com/8c369e9f-c020-46bc-9415-c444770845b9">verify credential</a></div>
       </div>
-      <div class="card">
-        <a class="card-title" href="https://github.com/thisiskazem/liqo-upgrade-operator">liqo-upgrade-operator</a>
-        <p>Minimal-downtime Liqo upgrades with rollback. Go · Helm</p>
+      <div class="cert">
+        <div class="issuer">MikroTik</div>
+        <div class="name">MTCNA · MTCWE</div>
+        <div class="small">2017 – 2018</div>
       </div>
-      <div class="card">
-        <a class="card-title" href="https://github.com/thisiskazem/gitops-k8s-platform">gitops-k8s-platform</a>
-        <p>Commit to monitored deployment. Argo CD · Helm · Prometheus SLOs</p>
-      </div>
-      <div class="card">
-        <a class="card-title" href="https://github.com/thisiskazem/aws-landing-zone">aws-landing-zone</a>
-        <p>Terraform landing zone with EKS, IRSA and credential-less OIDC.</p>
+      <div class="cert next">
+        <div class="issuer">Next</div>
+        <div class="name">NVIDIA AI Operations · AI Networking</div>
+        <div class="small">NCP-AIO · NCP-AIN</div>
       </div>
     </div>
   </section>
 
   <section>
-    <h2>Certifications</h2>
-    <div class="cert">
-      <span><strong>NVIDIA-Certified Associate:</strong> AI Infrastructure and Operations</span>
-      <span class="item-date">2026</span>
+    <h2>~/skills</h2>
+    <div class="skills">
+      <div class="skill-label">ai-infrastructure</div>
+      <div class="tags"><span class="tag">NVIDIA GPU stack</span><span class="tag">DCGM</span><span class="tag">MIG</span><span class="tag">InfiniBand</span><span class="tag">RoCE</span><span class="tag">Slurm</span></div>
+      <div class="skill-label">kubernetes</div>
+      <div class="tags"><span class="tag">Kubernetes</span><span class="tag">Helm</span><span class="tag">Kustomize</span><span class="tag">KubeVirt</span><span class="tag">Liqo</span><span class="tag">Go</span><span class="tag">kubebuilder</span></div>
+      <div class="skill-label">cloud &amp; automation</div>
+      <div class="tags"><span class="tag">AWS</span><span class="tag">Terraform</span><span class="tag">Ansible</span><span class="tag">GitHub Actions</span><span class="tag">Argo CD</span></div>
+      <div class="skill-label">observability</div>
+      <div class="tags"><span class="tag">Prometheus</span><span class="tag">Grafana</span><span class="tag">Kepler</span></div>
+      <div class="skill-label">foundations</div>
+      <div class="tags"><span class="tag">Linux</span><span class="tag">Networking</span><span class="tag">Bash</span><span class="tag">Python</span></div>
     </div>
-    <div class="cert">
-      <span><strong>MikroTik</strong> MTCNA · MTCWE</span>
-      <span class="item-date">2017 – 2018</span>
-    </div>
-    <p class="badge-next">Next: NVIDIA AI Operations (NCP-AIO) · AI Networking (NCP-AIN)</p>
   </section>
 
   <section>
-    <h2>Skills</h2>
-    <div class="skill-label">AI infrastructure</div>
-    <div class="tags"><span class="tag">NVIDIA GPU stack</span><span class="tag">DCGM</span><span class="tag">MIG</span><span class="tag">InfiniBand</span><span class="tag">RoCE</span><span class="tag">Slurm</span></div>
-    <div class="skill-label">Kubernetes</div>
-    <div class="tags"><span class="tag">Kubernetes</span><span class="tag">Helm</span><span class="tag">Kustomize</span><span class="tag">KubeVirt</span><span class="tag">Liqo</span><span class="tag">Go</span><span class="tag">kubebuilder</span></div>
-    <div class="skill-label">Cloud &amp; automation</div>
-    <div class="tags"><span class="tag">AWS</span><span class="tag">Terraform</span><span class="tag">Ansible</span><span class="tag">GitHub Actions</span><span class="tag">Argo CD</span><span class="tag">Prometheus</span><span class="tag">Grafana</span></div>
-    <div class="skill-label">Foundations</div>
-    <div class="tags"><span class="tag">Linux</span><span class="tag">Networking</span><span class="tag">Bash</span><span class="tag">Python</span></div>
-  </section>
-
-  <section>
-    <h2>Education</h2>
-    <div class="item">
-      <div class="item-head">
-        <span class="item-title">M.Sc. Computer Engineering · Politecnico di Torino</span>
-        <span class="item-date">2023 – 2026</span>
-      </div>
-      <div class="item-sub">Cloud computing and software networking</div>
+    <h2>~/education</h2>
+    <div class="edu">
+      <span><strong>M.Sc. Computer Engineering</strong> <span class="tl-org">· Politecnico di Torino</span></span>
+      <span class="date">2023 – 2026</span>
     </div>
-    <div class="item">
-      <div class="item-head">
-        <span class="item-title">B.Sc. Information Technology Engineering</span>
-        <span class="item-date">2016 – 2018</span>
-      </div>
-      <div class="item-sub">University of Applied Science and Technology, Iran</div>
+    <div class="edu">
+      <span><strong>B.Sc. Information Technology Engineering</strong> <span class="tl-org">· University of Applied Science and Technology, Iran</span></span>
+      <span class="date">2016 – 2018</span>
     </div>
   </section>
 
-  <footer>© 2026 Kazem Bigdeli</footer>
+  <footer>
+    <span>© 2026 Kazem Bigdeli</span>
+    <span>status: <span style="color: var(--accent)">Ready</span></span>
+  </footer>
 </main>
+
+<script>
+  (function () {
+    var el = document.getElementById('term');
+    var lines = [
+      { t: 'cmd', s: 'kubectl get nodes -o wide' },
+      { t: 'out', s: 'NAME     STATUS   ROLE                LOCATION   FOCUS' },
+      { t: 'out', s: 'kazem    Ready    ai-infrastructure   Turin      GPU · Kubernetes · Networking' },
+      { t: 'cmd', s: 'kubectl describe node kazem | grep -i open-to' },
+      { t: 'ok',  s: 'open-to: AI infrastructure and platform engineering roles' }
+    ];
+    var reduce = window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+    function esc(s) { return s.replace(/&/g, '&amp;').replace(/</g, '&lt;'); }
+    function render(done, partial) {
+      var html = done.map(function (l) {
+        if (l.t === 'cmd') return '<span class="prompt">$ </span><span class="cmd">' + esc(l.s) + '</span>';
+        if (l.t === 'ok') return '<span class="ok">' + esc(l.s) + '</span>';
+        return esc(l.s);
+      }).join('\n');
+      if (partial !== undefined) html += (html ? '\n' : '') + '<span class="prompt">$ </span><span class="cmd">' + esc(partial) + '</span>';
+      el.innerHTML = html + '<span class="cursor"></span>';
+    }
+    if (reduce) { render(lines); return; }
+    var done = [], i = 0;
+    function next() {
+      if (i >= lines.length) { render(done); return; }
+      var l = lines[i];
+      if (l.t === 'cmd') {
+        var c = 0;
+        (function type() {
+          if (c <= l.s.length) { render(done, l.s.slice(0, c)); c++; setTimeout(type, 38); }
+          else { done.push(l); i++; setTimeout(next, 350); }
+        })();
+      } else { done.push(l); i++; render(done); setTimeout(next, 220); }
+    }
+    setTimeout(next, 400);
+  })();
+</script>
 </body>
 </html>
