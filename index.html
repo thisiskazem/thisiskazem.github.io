@@ -1,0 +1,225 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Kazem Bigdeli · Cloud & AI Infrastructure Engineer</title>
+<meta name="description" content="Kazem Bigdeli, Cloud and AI Infrastructure Engineer in Turin, Italy. Kubernetes, multi-cluster scheduling, GPU infrastructure, NVIDIA-Certified.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --bg: #ffffff;
+    --surface: #f6f8fa;
+    --text: #1f2328;
+    --muted: #59636e;
+    --accent: #1a5fb4;
+    --rule: #d8dee4;
+  }
+  @media (prefers-color-scheme: dark) {
+    :root {
+      --bg: #0d1117;
+      --surface: #161b22;
+      --text: #e6edf3;
+      --muted: #9198a1;
+      --accent: #6cb6ff;
+      --rule: #30363d;
+    }
+  }
+  * { box-sizing: border-box; }
+  body {
+    margin: 0;
+    background: var(--bg);
+    color: var(--text);
+    font-family: "Inter", system-ui, -apple-system, "Segoe UI", sans-serif;
+    font-size: 16px;
+    line-height: 1.6;
+  }
+  main { max-width: 760px; margin: 0 auto; padding: 56px 20px 72px; }
+  a { color: var(--accent); text-decoration: none; }
+  a:hover { text-decoration: underline; }
+
+  header h1 { font-size: 2.4rem; letter-spacing: -0.03em; margin: 0; }
+  .role { font-size: 1.1rem; font-weight: 600; color: var(--accent); margin: 4px 0 2px; }
+  .meta { color: var(--muted); margin: 0 0 16px; }
+  .links { display: flex; flex-wrap: wrap; gap: 10px; margin: 0 0 8px; }
+  .links a {
+    border: 1px solid var(--rule);
+    border-radius: 999px;
+    padding: 6px 14px;
+    font-size: 0.9rem;
+    font-weight: 500;
+    color: var(--text);
+  }
+  .links a:hover { border-color: var(--accent); color: var(--accent); text-decoration: none; }
+
+  section { margin-top: 44px; }
+  h2 {
+    font-size: 0.8rem;
+    text-transform: uppercase;
+    letter-spacing: 0.12em;
+    color: var(--muted);
+    border-bottom: 1px solid var(--rule);
+    padding-bottom: 6px;
+    margin: 0 0 18px;
+  }
+  .intro { font-size: 1.05rem; }
+
+  .item { margin-bottom: 22px; }
+  .item-head { display: flex; justify-content: space-between; gap: 12px; flex-wrap: wrap; }
+  .item-title { font-weight: 600; }
+  .item-date { color: var(--muted); font-size: 0.9rem; white-space: nowrap; }
+  .item-sub { color: var(--muted); font-size: 0.95rem; }
+  ul { margin: 6px 0 0; padding-left: 20px; }
+  li { margin-bottom: 4px; }
+
+  .cards { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 14px; }
+  .card {
+    background: var(--surface);
+    border: 1px solid var(--rule);
+    border-radius: 10px;
+    padding: 16px;
+  }
+  .card a.card-title { font-weight: 600; display: block; margin-bottom: 4px; }
+  .card p { margin: 0; font-size: 0.92rem; color: var(--muted); }
+
+  .tags { display: flex; flex-wrap: wrap; gap: 6px; margin: 4px 0 12px; }
+  .tag {
+    background: var(--surface);
+    border: 1px solid var(--rule);
+    border-radius: 6px;
+    padding: 2px 9px;
+    font-size: 0.85rem;
+  }
+  .skill-label { font-weight: 600; font-size: 0.9rem; }
+
+  .cert { display: flex; justify-content: space-between; gap: 12px; flex-wrap: wrap; margin-bottom: 8px; }
+  .badge-next { color: var(--muted); font-size: 0.92rem; }
+
+  footer { margin-top: 56px; color: var(--muted); font-size: 0.85rem; text-align: center; }
+</style>
+</head>
+<body>
+<main>
+
+  <header>
+    <h1>Kazem Bigdeli</h1>
+    <p class="role">Cloud &amp; AI Infrastructure Engineer</p>
+    <p class="meta">Turin, Italy · Research Fellow at Politecnico di Torino</p>
+    <nav class="links">
+      <a href="https://www.linkedin.com/in/kazembigdeli/">LinkedIn</a>
+      <a href="https://github.com/thisiskazem">GitHub</a>
+      <a href="mailto:kazem26@gmail.com">Email</a>
+    </nav>
+  </header>
+
+  <section>
+    <h2>About</h2>
+    <p class="intro">I build Kubernetes platforms at the multi-cluster, scheduling and networking layer, write controllers in Go, and automate infrastructure end to end. I'm now focused on the infrastructure that runs AI: GPU compute, high-performance networking, and the orchestration that ties them together.</p>
+  </section>
+
+  <section>
+    <h2>Experience</h2>
+
+    <div class="item">
+      <div class="item-head">
+        <span class="item-title">Research Fellow · Politecnico di Torino</span>
+        <span class="item-date">2024 – Present</span>
+      </div>
+      <ul>
+        <li>AI workload optimization for telco edge data centers; infrastructure architecture for the FiberCop telco edge network.</li>
+        <li>Building <a href="https://github.com/netgroup-polito/federation-autoscaler">federation-autoscaler</a>, a Cluster Autoscaler extension that borrows compute across federated clusters via Liqo.</li>
+        <li>Contributor to <a href="https://github.com/liqotech/liqo">Liqo</a> (CNCF ecosystem); energy monitoring with Prometheus, Grafana and Kepler.</li>
+      </ul>
+    </div>
+
+    <div class="item">
+      <div class="item-head">
+        <span class="item-title">Cloud-Native Engineer Intern · Engineering Group</span>
+        <span class="item-date">2025 – 2026</span>
+      </div>
+      <ul>
+        <li>Sole author of <a href="https://github.com/thisiskazem/liqo-upgrade-operator">liqo-upgrade-operator</a>: staged upgrades with health gates and automatic rollback; peering downtime cut to about 30 seconds.</li>
+      </ul>
+    </div>
+
+    <div class="item">
+      <div class="item-head">
+        <span class="item-title">System Administrator · MPP Holding</span>
+        <span class="item-date">2021 – 2023</span>
+      </div>
+      <ul>
+        <li>Ran servers, virtual machines and network infrastructure for an organisation of about 100 users.</li>
+      </ul>
+    </div>
+  </section>
+
+  <section>
+    <h2>Projects</h2>
+    <div class="cards">
+      <div class="card">
+        <a class="card-title" href="https://github.com/netgroup-polito/federation-autoscaler">federation-autoscaler</a>
+        <p>Multi-cluster autoscaling with virtual nodes. Go · kubebuilder · gRPC · Liqo</p>
+      </div>
+      <div class="card">
+        <a class="card-title" href="https://github.com/thisiskazem/liqo-upgrade-operator">liqo-upgrade-operator</a>
+        <p>Minimal-downtime Liqo upgrades with rollback. Go · Helm</p>
+      </div>
+      <div class="card">
+        <a class="card-title" href="https://github.com/thisiskazem/gitops-k8s-platform">gitops-k8s-platform</a>
+        <p>Commit to monitored deployment. Argo CD · Helm · Prometheus SLOs</p>
+      </div>
+      <div class="card">
+        <a class="card-title" href="https://github.com/thisiskazem/aws-landing-zone">aws-landing-zone</a>
+        <p>Terraform landing zone with EKS, IRSA and credential-less OIDC.</p>
+      </div>
+    </div>
+  </section>
+
+  <section>
+    <h2>Certifications</h2>
+    <div class="cert">
+      <span><strong>NVIDIA-Certified Associate:</strong> AI Infrastructure and Operations</span>
+      <span class="item-date">2026</span>
+    </div>
+    <div class="cert">
+      <span><strong>MikroTik</strong> MTCNA · MTCWE</span>
+      <span class="item-date">2017 – 2018</span>
+    </div>
+    <p class="badge-next">Next: NVIDIA AI Operations (NCP-AIO) · AI Networking (NCP-AIN)</p>
+  </section>
+
+  <section>
+    <h2>Skills</h2>
+    <div class="skill-label">AI infrastructure</div>
+    <div class="tags"><span class="tag">NVIDIA GPU stack</span><span class="tag">DCGM</span><span class="tag">MIG</span><span class="tag">InfiniBand</span><span class="tag">RoCE</span><span class="tag">Slurm</span></div>
+    <div class="skill-label">Kubernetes</div>
+    <div class="tags"><span class="tag">Kubernetes</span><span class="tag">Helm</span><span class="tag">Kustomize</span><span class="tag">KubeVirt</span><span class="tag">Liqo</span><span class="tag">Go</span><span class="tag">kubebuilder</span></div>
+    <div class="skill-label">Cloud &amp; automation</div>
+    <div class="tags"><span class="tag">AWS</span><span class="tag">Terraform</span><span class="tag">Ansible</span><span class="tag">GitHub Actions</span><span class="tag">Argo CD</span><span class="tag">Prometheus</span><span class="tag">Grafana</span></div>
+    <div class="skill-label">Foundations</div>
+    <div class="tags"><span class="tag">Linux</span><span class="tag">Networking</span><span class="tag">Bash</span><span class="tag">Python</span></div>
+  </section>
+
+  <section>
+    <h2>Education</h2>
+    <div class="item">
+      <div class="item-head">
+        <span class="item-title">M.Sc. Computer Engineering · Politecnico di Torino</span>
+        <span class="item-date">2023 – 2026</span>
+      </div>
+      <div class="item-sub">Cloud computing and software networking</div>
+    </div>
+    <div class="item">
+      <div class="item-head">
+        <span class="item-title">B.Sc. Information Technology Engineering</span>
+        <span class="item-date">2016 – 2018</span>
+      </div>
+      <div class="item-sub">University of Applied Science and Technology, Iran</div>
+    </div>
+  </section>
+
+  <footer>© 2026 Kazem Bigdeli</footer>
+</main>
+</body>
+</html>
